@@ -9,7 +9,7 @@
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Fetched data is stored as message in your inbox"
+                android:text="@string/read_write_confirmation"
                 />
         <Button android:id="@+id/close" android:layout_width="fill_parent"
                 android:layout_marginLeft="80dip" android:layout_marginRight="80dip"

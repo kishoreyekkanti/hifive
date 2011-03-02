@@ -4,4 +4,5 @@
     <string name="activity_chooser_text">If your NFC is enabled and any other NFC enabled device is in the range, then
         you will get an activity chooser dialog. If you want to see the demo of how "hifive" works, click on the demo button.
     </string>
+    <string name="read_write_confirmation">Fetched data is stored as message in your inbox</string>
 </resources>
