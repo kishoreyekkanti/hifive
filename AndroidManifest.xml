@@ -5,7 +5,7 @@
           android:versionName="1.0">
     <uses-permission android:name="android.permission.NFC"/>
     <application android:label="hifive" android:icon="@drawable/icon" android:debuggable="true">
-        <activity android:name=".BusinessCardInputActivity" android:label="BusinessCardInput">
+        <activity android:name=".ActivityChooser" android:label="ActivityChooser">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -13,20 +13,20 @@
         </activity>
 
         <activity android:name=".TagReadActivity"
-                  android:label="Read Business Card">
+                  android:label="Read Data">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TagWriteActivity" android:label="Write Business Card">
+        <activity android:name=".TagWriteActivity" android:label="Write Data">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityChooser"/>
-        <activity android:name=".SaveBusinessCardActivity" android:label="Save Business Card">
+        <activity android:name=".DemoDataInputActivity" android:label="Data Input Demo"/>
+        <activity android:name=".SaveDataActivity" android:label="Save Data">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -35,4 +35,6 @@
     </application>
     <uses-sdk android:minSdkVersion="10"/>
     <uses-feature android:name="android.hardware.nfc" android:required="true"/>
-</manifest> 
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+</manifest>

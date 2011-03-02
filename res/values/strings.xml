@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MyActivity</string>
+    <string name="activity_chooser_text">If your NFC is enabled and any other NFC enabled device is in the range, then
+        you will get an activity chooser dialog
+    </string>
 </resources>

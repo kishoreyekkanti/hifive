@@ -1,13 +1,12 @@
 package com.nfc.activities;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
-import android.nfc.Tag;
-import android.nfc.tech.Ndef;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -19,6 +18,10 @@ import java.util.List;
 
 public class TagReadActivity extends Activity {
     static final String TAG = "TagReadActivity";
+    private static final String SMS_CONTENT_PROVIDER = "content://sms/sent";
+    private static final String BODY = "body";
+    private static final String ADDRESS = "address";
+    StringBuilder detailsRead = new StringBuilder();
 
     /**
      * Called when the activity is first created.
@@ -59,17 +62,25 @@ public class TagReadActivity extends Activity {
                 msgs = new NdefMessage[]{msg};
             }
             List<ParsedNdefRecord> records = NdefMessageParser.parse(msgs[0]);
-            for (int i=0; i < records.size() ; i++){
+            for (int i = 0; i < records.size(); i++) {
                 Log.e(TAG, ((ParsedNdefRecord) records.get(i)).getText());
-                Toast toast = Toast.makeText(this,((ParsedNdefRecord) records.get(i)).getText(),Toast.LENGTH_LONG);
-                toast.show();
+                detailsRead.append(((ParsedNdefRecord) records.get(i)).getText());
             }
+            Toast toast = Toast.makeText(this, detailsRead.toString(), Toast.LENGTH_LONG);
+            toast.show();
+            ContentValues values = new ContentValues();
+            values.put(ADDRESS, "hifive");
+            values.put(BODY, detailsRead.toString());
+            getContentResolver().insert(Uri.parse(SMS_CONTENT_PROVIDER), values);
 
         } else {
             Log.e(TAG, "Unknown intent " + intent);
-            finish();
-            return;
+            Toast toast = Toast.makeText(this, "Unable to read the contents", Toast.LENGTH_LONG);
+            toast.show();
         }
+
+        finish();
+        return;
     }
 
 }

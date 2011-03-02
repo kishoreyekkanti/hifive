@@ -1,12 +1,16 @@
 package com.nfc.activities;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.nio.charset.Charset;
 import java.util.Locale;
@@ -19,13 +23,35 @@ import java.util.Locale;
  * To change this template use File | Settings | File Templates.
  */
 public class TagWriteActivity extends Activity {
+    private static final String BUSINESS_CARD = "businessCard";
+    private static final String BUSINESS_CARD_NOT_SET = "business card not set";
+    private static final String TAG = "TagWriteActivity";
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String businessCard = preferences.getString(BUSINESS_CARD, BUSINESS_CARD_NOT_SET);
+        Log.i(TAG, "business card::" + businessCard);
         // get the tag from the Intent
         Tag mytag = (Tag) getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
+
+        if (mytag == null) {
+            Toast toast = Toast.makeText(this, "Unable to write to the tag. Tag not found", Toast.LENGTH_LONG);
+            toast.show();
+            finishActivity();
+            return;
+        }
+
         // get the Ndef (TagTechnology) from the tag
         Ndef ndefref = Ndef.get(mytag);
-        writeTag(ndefref,"some text to write");
+        writeTag(ndefref, businessCard);
+        finishActivity();
+    }
+
+    private void finishActivity() {
+        finish();
+        return;
     }
 
     private void writeTag(final Ndef ndefref, final String text) {
@@ -59,7 +85,7 @@ public class TagWriteActivity extends Activity {
                     ndefref.close();
 
                 } catch (Throwable t) {
-                    t.printStackTrace();
+                    Log.e(TAG, t.getMessage());
                 }
             }
         }).start();

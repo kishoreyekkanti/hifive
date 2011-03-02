@@ -4,6 +4,6 @@
         <EditTextPreference android:layout_height="200dip" android:layout_width="fill_parent" android:singleLine="false"
                             android:id="@+id/business_card_text" android:name="Business Card Settings"
                             android:summary="Write your business card to share"
-                            android:title="BusinessCard" android:key="businessCard"/>
+                            android:title="Business Card" android:key="businessCard"/>
     </PreferenceCategory>
 </PreferenceScreen>

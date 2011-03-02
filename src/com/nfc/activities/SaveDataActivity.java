@@ -18,7 +18,7 @@ import android.widget.EditText;
  * Time: 9:23 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SaveBusinessCardActivity extends PreferenceActivity {
+public class SaveDataActivity extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
