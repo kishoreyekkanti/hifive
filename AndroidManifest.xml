@@ -4,8 +4,8 @@
           android:versionCode="1"
           android:versionName="1.0">
     <uses-permission android:name="android.permission.NFC"/>
-    <application android:label="hifive" android:icon="@drawable/icon" android:debuggable="true">
-        <activity android:name=".ActivityChooser" android:label="ActivityChooser">
+    <application android:label="hiFive" android:icon="@drawable/hifive" android:debuggable="true">
+        <activity android:name=".ActivityChooser">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -13,20 +13,20 @@
         </activity>
 
         <activity android:name=".TagReadActivity"
-                  android:label="Read Data">
+                  android:label="Read Data" android:icon="@drawable/read_data">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TagWriteActivity" android:label="Write Data">
+        <activity android:name=".TagWriteActivity" android:label="Write Data" android:icon="@drawable/write_data">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity android:name=".DemoDataInputActivity" android:label="Data Input Demo"/>
-        <activity android:name=".SaveDataActivity" android:label="Save Data">
+        <activity android:name=".SaveDataActivity" android:label="Save Data" android:icon="@drawable/save_data">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
