@@ -7,7 +7,6 @@ import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.HeaderViewListAdapter;
 
 
 public class DemoDataInputActivity extends Activity {
@@ -22,13 +21,13 @@ public class DemoDataInputActivity extends Activity {
                     (byte) 0x73, (byte) 0x68, (byte) 0x20, (byte) 0x74, (byte) 0x65, (byte) 0x78,
                     (byte) 0x74, (byte) 0x2e};
     public static final byte[] HEADER = new
-            byte[]{(byte) 0xd1, (byte) 0x01, (byte) 0x1c, (byte) 0x54, (byte) 0x02, (byte) 0x65, (byte) 0x6e};
+            byte[]{(byte) 0xd1, (byte) 0x01, (byte) 0xff, (byte) 0x54, (byte) 0x02, (byte) 0x65, (byte) 0x6e};
 
     public static final byte[] FOOTER =
             new byte[]{(byte) 0x65, (byte) 0x78, (byte) 0x74, (byte) 0x2e};
 
     public static final String TEXT =
-            "YKishoreKumar,ThoughtWorks Technologies India Pvt. Ltd. R.R.Tower 5, Rishabh Info Park, TVK Estate, Guindy, Chennai-600032" +
+            "Y Kishore Kumar,ThoughtWorks Technologies India Pvt. Ltd. R.R.Tower 5, Guindy, Chennai-600032" +
                     " Cell: 9500037878" +
                     " Home: 04443838501" +
                     " Web: http://kishoreyekkanti.blogspot.com" +
