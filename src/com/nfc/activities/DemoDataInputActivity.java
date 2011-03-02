@@ -7,6 +7,9 @@ import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 public class DemoDataInputActivity extends Activity {
@@ -21,23 +24,24 @@ public class DemoDataInputActivity extends Activity {
                     (byte) 0x73, (byte) 0x68, (byte) 0x20, (byte) 0x74, (byte) 0x65, (byte) 0x78,
                     (byte) 0x74, (byte) 0x2e};
     public static final byte[] HEADER = new
-            byte[]{(byte) 0xd1, (byte) 0x01, (byte) 0xff, (byte) 0x54, (byte) 0x02, (byte) 0x65, (byte) 0x6e};
+            byte[]{(byte) 0xd1, (byte) 0x01, (byte) 0xdf, (byte) 0x54, (byte) 0x02, (byte) 0x65, (byte) 0x6e};
 
     public static final byte[] FOOTER =
             new byte[]{(byte) 0x65, (byte) 0x78, (byte) 0x74, (byte) 0x2e};
 
     public static final String TEXT =
-            "Y Kishore Kumar,ThoughtWorks Technologies India Pvt. Ltd. R.R.Tower 5, Guindy, Chennai-600032" +
+            "Y Kishore Kumar,ThoughtWorks Technologies India Pvt. Ltd., Chennai-600032" +
                     " Cell: 9500037878" +
                     " Home: 04443838501" +
                     " Web: http://kishoreyekkanti.blogspot.com" +
                     " github: http://github.com/kishoreyekkanti" +
-                    " twitter: kishoreyekkanti  ";
+                    " twitter: kishoreyekkanti";
 
     public static final byte[] DATA = TEXT.getBytes();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
         final Intent intent = new Intent(NfcAdapter.ACTION_TAG_DISCOVERED);
         try {
             byte[] DATA_TO_SEND = new byte[1 + HEADER.length + DATA.length + FOOTER.length];
@@ -48,7 +52,18 @@ public class DemoDataInputActivity extends Activity {
             intent.putExtra(NfcAdapter.EXTRA_NDEF_MESSAGES, new NdefMessage[]{new NdefMessage(DATA_TO_SEND)});
         } catch (FormatException e) {
             Log.e(TAG, e.toString());
+            Toast toast = Toast.makeText(this, e.toString(), Toast.LENGTH_LONG);
+            toast.show();
         }
         startActivity((Intent.createChooser(intent, "Select Activity")));
+        Button close = (Button) findViewById(R.id.close);
+
+        close.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                finish();
+                return;
+            }
+        });
     }
 }
