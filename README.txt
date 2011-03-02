@@ -1,0 +1,1 @@
+hifive helps you in sharing your business cards with a swipe. If you want to share your business card with any NFC powered device, enable your nfc and swipe your device against any other nfc powered device. That's the end of it!! your business card is shared.
